@@ -53,13 +53,19 @@ namespace random_sentence_generator
                 "une carte",
             };
 
-            for (int i = 0; i < 10; i++) 
-            {
-                string sujet = ObtenirElementAleatoire(sujets);
-                string verbe = ObtenirElementAleatoire(verbes);
-                string complement = ObtenirElementAleatoire(complements);
+            const int NB_PHRASES = 10;
 
-                Console.WriteLine(sujet + " " + verbe + " " + complement);
+            for (int i = 0; i < NB_PHRASES; i++) 
+            {
+                var sujet = ObtenirElementAleatoire(sujets);
+                var verbe = ObtenirElementAleatoire(verbes);
+                var complement = ObtenirElementAleatoire(complements);
+
+                var sentence = sujet + " " + verbe + " " + complement;
+
+                sentence = sentence.Replace("à le", "au");
+
+                Console.WriteLine(sentence);
             }
 
            
