@@ -53,22 +53,40 @@ namespace random_sentence_generator
                 "une carte",
             };
 
-            const int NB_PHRASES = 10;
+            const int NB_PHRASES = 100;
+            var phrasesUniques = new List<string>();
+            int doublons = 0;
 
-            for (int i = 0; i < NB_PHRASES; i++) 
+            while (phrasesUniques.Count < NB_PHRASES )
             {
+
                 var sujet = ObtenirElementAleatoire(sujets);
                 var verbe = ObtenirElementAleatoire(verbes);
                 var complement = ObtenirElementAleatoire(complements);
 
-                var sentence = sujet + " " + verbe + " " + complement;
+                var phrase = sujet + " " + verbe + " " + complement;
 
-                sentence = sentence.Replace("à le", "au");
+                phrase = phrase.Replace("à le", "au");
 
-                Console.WriteLine(sentence);
+                if (!phrasesUniques.Contains(phrase)) 
+                {
+                    phrasesUniques.Add(phrase);
+                }
+                else
+                {
+                    doublons++;
+                }
             }
 
-           
+            foreach (var phrase in phrasesUniques)
+            {
+                Console.WriteLine(phrase);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Nombre de phrase unique générée : " + phrasesUniques.Count);
+            Console.WriteLine("Nombre de doublon évité : " + doublons);
+
 
         }
     }
